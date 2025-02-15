@@ -12,7 +12,7 @@ ENV SRV_PORT=65001 \
     NC_PORT=4443
 
 # Apt packages to install
-ENV PACKAGES "wget git python3-pip openssl"
+ENV PACKAGES "wget git python3-pipx openssl"
 
 RUN apt-get -y update && \
     apt-get install -y $PACKAGES && \
@@ -23,7 +23,7 @@ RUN apt-get -y update && \
 RUN cd /opt && \
     git clone https://github.com/t3l3machus/Villain && \
     cd ./Villain && \
-    pip3 install -r requirements.txt
+    pipx install -r requirements.txt
 
 WORKDIR /opt/Villain
 
