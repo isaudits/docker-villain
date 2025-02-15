@@ -12,7 +12,7 @@ ENV SRV_PORT=65001 \
     NC_PORT=4443
 
 # Apt packages to install
-ENV PACKAGES "wget git python3-pipx openssl"
+ENV PACKAGES "wget git pipx openssl"
 
 RUN apt-get -y update && \
     apt-get install -y $PACKAGES && \
