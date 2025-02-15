@@ -13,7 +13,7 @@ SRV_PORT=${SRV_PORT:-65001}
 HOAX_PORT=${HOAX_PORT:-443}
 NC_PORT=${NC_PORT:-4443}
 
-cd /opt/Villain
+cd /usr/share/villain
 
 # Generate a passphrase
 openssl rand -base64 48 > passphrase.txt

@@ -1,4 +1,4 @@
-FROM debian:stable
+FROM kalilinux/kali-rolling
 
 ENV LC_ALL C.UTF-8
 ENV STAGING_KEY=RANDOM
@@ -11,21 +11,11 @@ ENV SRV_PORT=65001 \
     HOAX_PORT=443 \
     NC_PORT=4443
 
-# Apt packages to install
-ENV PACKAGES "wget git pipx openssl"
-
 RUN apt-get -y update && \
-    apt-get install -y $PACKAGES && \
+    apt-get install -y villain && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-
-RUN cd /opt && \
-    git clone https://github.com/t3l3machus/Villain && \
-    cd ./Villain && \
-    pipx install -r requirements.txt
-
-WORKDIR /opt/Villain
 
 COPY entrypoint.sh /opt/entrypoint.sh
 
