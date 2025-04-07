@@ -9,7 +9,8 @@ ARG VCS_REF
 
 ENV SRV_PORT=65001 \
     HOAX_PORT=443 \
-    NC_PORT=4443
+    NC_PORT=4443 \
+    INSECURE=false
 
 RUN apt-get -y update && \
     apt-get install -y villain && \
