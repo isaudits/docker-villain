@@ -13,10 +13,16 @@ ENV SRV_PORT=65001 \
     INSECURE=false
 
 RUN apt-get -y update && \
-    apt-get install -y villain && \
+    apt-get install -y villain tini && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+RUN cd /opt && \
+[ "${TARGETARCH}" = "arm64" ] && FILE="ttyd.aarch64" || FILE="ttyd.x86_64"; \
+    wget https://github.com/tsl0922/ttyd/releases/latest/download/${FILE} && \
+    chmod 755 /opt/${FILE} && \
+    ln -s /opt/${FILE} /usr/bin/ttyd
 
 COPY entrypoint.sh /opt/entrypoint.sh
 
