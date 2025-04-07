@@ -13,7 +13,7 @@ ENV SRV_PORT=65001 \
     INSECURE=false
 
 RUN apt-get -y update && \
-    apt-get install -y villain tini && \
+    apt-get install -y wget villain tini && \
     apt-get autoremove -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
