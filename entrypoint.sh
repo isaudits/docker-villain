@@ -1,14 +1,5 @@
 #!/bin/bash
 
-while [ $# -gt 0 ]; do
-    if [[ $1 == "--"* ]]; then
-        v="${1/--/}"
-        declare "$v"="$2"
-        shift
-    fi
-    shift
-done
-
 SRV_PORT=${SRV_PORT:-65001}
 HOAX_PORT=${HOAX_PORT:-443}
 NC_PORT=${NC_PORT:-4443}

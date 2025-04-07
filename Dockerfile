@@ -13,12 +13,10 @@ ENV SRV_PORT=65001 \
     INSECURE=false
 
 RUN apt-get -y update && \
-    apt-get install -y wget villain tini pipx && \
+    apt-get install -y wget villain tini && \
     apt-get autoremove -y && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    pipx install powerhub && \
-    pipx ensurepath
+    rm -rf /var/lib/apt/lists/*
 
 RUN cd /opt && \
 [ "${TARGETARCH}" = "arm64" ] && FILE="ttyd.aarch64" || FILE="ttyd.x86_64"; \
