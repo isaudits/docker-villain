@@ -12,6 +12,7 @@ done
 SRV_PORT=${SRV_PORT:-65001}
 HOAX_PORT=${HOAX_PORT:-443}
 NC_PORT=${NC_PORT:-4443}
+INSECURE=${INSECURE:-false}
 
 cd /usr/share/villain
 
@@ -32,4 +33,9 @@ openssl rsa -in server.key.org -passin file:passphrase.txt -out server.key
 # Generating a Self-Signed Certificate for 100 years
 openssl x509 -req -days 36500 -in server.csr -signkey server.key -out server.crt
 
-python3 Villain.py -p $SRV_PORT -x $HOAX_PORT -n $NC_PORT -c server.crt -k server.key
+if [ $INSECURE = true ]; then
+    printf "Insecure mode enabled. Using insecure connection.\n"
+    python3 Villain.py -p $SRV_PORT -x $HOAX_PORT -n $NC_PORT -c server.crt -k server.key -i
+else
+    python3 Villain.py -p $SRV_PORT -x $HOAX_PORT -n $NC_PORT -c server.crt -k server.key
+fi
